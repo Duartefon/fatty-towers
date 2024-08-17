@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://boqufdiqnuwmt"]
+
+[ext_resource type="PackedScene" uid="uid://d2nfbgac7suwv" path="res://menus/options_menu/options_display_button.tscn" id="1_pd4rm"]
+[ext_resource type="Script" path="res://menus/options_menu/options_buttons/window_resolution_button.gd" id="2_cxwxn"]
+
+[node name="WindowResolutionButton" instance=ExtResource("1_pd4rm")]
+script = ExtResource("2_cxwxn")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "Resolution"
+
+[node name="OptionButton" parent="HBoxContainer" index="2"]
+selected = 0
+item_count = 7
+popup/item_0/text = "1152x648"
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "1366x768"
+popup/item_2/id = 2
+popup/item_3/text = "1600x900"
+popup/item_3/id = 3
+popup/item_4/text = "1920x1080"
+popup/item_4/id = 4
+popup/item_5/text = "2560x1440"
+popup/item_5/id = 5
+popup/item_6/text = "3840x2160"
+popup/item_6/id = 6
+
+[connection signal="item_selected" from="HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

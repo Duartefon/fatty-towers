@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bildwjhyccmy7"]
 
-[ext_resource type="Script" path="res://options_menu.gd" id="1_u766u"]
-[ext_resource type="PackedScene" uid="uid://c4bdlqboj5uju" path="res://settings_tab_container.tscn" id="2_e5mr6"]
+[ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="1_u766u"]
+[ext_resource type="PackedScene" uid="uid://c4bdlqboj5uju" path="res://menus/options_menu/settings_tab_container.tscn" id="2_e5mr6"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -29,8 +29,9 @@ layout_mode = 2
 theme_override_constants/separation = -30
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 64
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -40,7 +41,9 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="BackToMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_font_sizes/font_size = 64
 text = "Back To Menu
 "

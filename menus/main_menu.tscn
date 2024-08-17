@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://die4if2kryckv"]
 
-[ext_resource type="Script" path="res://main_menu.gd" id="1_6eqtu"]
-[ext_resource type="PackedScene" uid="uid://bildwjhyccmy7" path="res://options_menu.tscn" id="2_pt8xw"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_6eqtu"]
+[ext_resource type="PackedScene" uid="uid://bildwjhyccmy7" path="res://menus/options_menu/options_menu.tscn" id="2_pt8xw"]
 
 [sub_resource type="SystemFont" id="SystemFont_ym704"]
 font_names = PackedStringArray("Impact")
@@ -98,6 +98,10 @@ text = "Exit"
 [node name="OptionsMenu" parent="." instance=ExtResource("2_pt8xw")]
 visible = false
 layout_mode = 1
+
+[node name="MenuMusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
