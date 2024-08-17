@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4gfoau7y6i07"]
+
+[ext_resource type="Script" path="res://debug_input.gd" id="1_6dhnm"]
+[ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_clgo2"]
+[ext_resource type="PackedScene" uid="uid://dacmskuis2l13" path="res://placeable_block.tscn" id="3_bkerc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ljri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvemd"]
+size = Vector2(51.5, 58)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6dhnm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(608, 363)
+scale = Vector2(9.46094, 5.70312)
+texture = ExtResource("1_clgo2")
+
+[node name="Sprite2D2" parent="." instance=ExtResource("3_bkerc")]
+position = Vector2(209, -85)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_2ljri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(606.75, 36)
+shape = SubResource("RectangleShape2D_pvemd")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(277, 133)
+node_a = NodePath("../Sprite2D2")
+node_b = NodePath("../StaticBody2D")
+softness = 5.07

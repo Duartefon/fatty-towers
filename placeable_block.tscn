@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dacmskuis2l13"]
+
+[ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ikdna"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5he4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxln0"]
+size = Vector2(131, 128)
+
+[node name="PlaceableBlock" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_5he4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_hxln0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ikdna")
