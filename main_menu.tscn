@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://die4if2kryckv"]
+[gd_scene load_steps=5 format=3 uid="uid://die4if2kryckv"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_6eqtu"]
+[ext_resource type="PackedScene" uid="uid://bildwjhyccmy7" path="res://options_menu.tscn" id="2_pt8xw"]
 
 [sub_resource type="SystemFont" id="SystemFont_ym704"]
 font_names = PackedStringArray("Impact")
@@ -94,8 +95,15 @@ theme_override_fonts/font = SubResource("SystemFont_aq7di")
 theme_override_font_sizes/font_size = 35
 text = "Exit"
 
+[node name="OptionsMenu" parent="." instance=ExtResource("2_pt8xw")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/StoryButton" to="." method="_on_story_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/MarginContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+
+[editable path="OptionsMenu"]
