@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://die4if2kryckv"]
+[gd_scene load_steps=6 format=3 uid="uid://die4if2kryckv"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_6eqtu"]
-[ext_resource type="PackedScene" uid="uid://bildwjhyccmy7" path="res://menus/options_menu/options_menu.tscn" id="2_pt8xw"]
+[ext_resource type="PackedScene" uid="uid://bildwjhyccmy7" path="res://menus/options_menu.tscn" id="2_pt8xw"]
+[ext_resource type="PackedScene" uid="uid://b0rcfjo0loyh7" path="res://menus/tutorial_menu.tscn" id="3_htvr0"]
 
 [sub_resource type="SystemFont" id="SystemFont_ym704"]
 font_names = PackedStringArray("Impact")
@@ -99,6 +100,10 @@ text = "Exit"
 visible = false
 layout_mode = 1
 
+[node name="TutorialMenu" parent="." instance=ExtResource("3_htvr0")]
+visible = false
+layout_mode = 1
+
 [node name="MenuMusicStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 bus = &"Music"
@@ -109,5 +114,7 @@ bus = &"Music"
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/StoryButton" to="." method="_on_story_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="OptionsMenu/MarginContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="TutorialMenu/MarginContainer/VBoxContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]
 
 [editable path="OptionsMenu"]
+[editable path="TutorialMenu"]
