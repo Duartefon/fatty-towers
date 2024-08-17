@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dacmskuis2l13"]
+[gd_scene load_steps=5 format=3 uid="uid://dacmskuis2l13"]
 
+[ext_resource type="Script" path="res://debugging/debug_forces.gd" id="1_dp6ad"]
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ikdna"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5he4l"]
@@ -8,7 +9,9 @@
 size = Vector2(131, 128)
 
 [node name="PlaceableBlock" type="RigidBody2D"]
+position = Vector2(0, -2)
 physics_material_override = SubResource("PhysicsMaterial_5he4l")
+script = ExtResource("1_dp6ad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1)
