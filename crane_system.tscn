@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://qx5eqi6t2bjr"]
+
+[ext_resource type="Script" path="res://crane_system.gd" id="1_0f3ll"]
+[ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="2_ldevf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lqlyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h05o5"]
+
+[node name="Node2D" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_lqlyl")
+script = ExtResource("1_0f3ll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h05o5")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ldevf")

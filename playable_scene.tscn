@@ -1,14 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4gfoau7y6i07"]
+[gd_scene load_steps=5 format=3 uid="uid://c4gfoau7y6i07"]
 
 [ext_resource type="Script" path="res://debugging/debug_input.gd" id="1_6dhnm"]
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_clgo2"]
 [ext_resource type="PackedScene" uid="uid://dacmskuis2l13" path="res://placeable_block.tscn" id="3_bkerc"]
-[ext_resource type="Script" path="res://debugging/debug_guindaste.gd" id="4_lo0kd"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ljri"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvemd"]
-size = Vector2(51.5, 58)
+[ext_resource type="PackedScene" uid="uid://qx5eqi6t2bjr" path="res://crane_system.tscn" id="4_4wqjs"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6dhnm")
@@ -22,15 +17,5 @@ texture = ExtResource("1_clgo2")
 [node name="Sprite2D2" parent="." instance=ExtResource("3_bkerc")]
 position = Vector2(632, 248)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_2ljri")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(606.75, 36)
-shape = SubResource("RectangleShape2D_pvemd")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(602, 42)
-node_a = NodePath("../Sprite2D2")
-node_b = NodePath("../StaticBody2D")
-script = ExtResource("4_lo0kd")
+[node name="Node2D" parent="." instance=ExtResource("4_4wqjs")]
+position = Vector2(619, 81)
