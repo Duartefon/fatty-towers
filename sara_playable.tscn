@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqph5gbcghrnu"]
+
+[ext_resource type="Script" path="res://pendulum_follow.gd" id="1_uomqb"]
+[ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ur7bl"]
+
+[sub_resource type="Curve2D" id="Curve2D_sspe7"]
+bake_interval = 6.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -650, -100, -250, 0, 250, 0, 0, 130, 0, 0, 0, 0, 650, -100, 250, 0, -250, 0, 0, 130, 0, 0, 0, 0, -650, -100)
+}
+point_count = 5
+
+[node name="SaraPlayable" type="Node2D"]
+
+[node name="PendulumPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sspe7")
+
+[node name="Camera2D" type="Camera2D" parent="PendulumPath"]
+offset = Vector2(0, 324)
+
+[node name="PendulumFollow" type="PathFollow2D" parent="PendulumPath"]
+position = Vector2(-650, -100)
+rotation = 0.221975
+rotates = false
+script = ExtResource("1_uomqb")
+speed = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="PendulumPath/PendulumFollow"]
+rotation = -0.221975
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ur7bl")
