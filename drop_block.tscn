@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://kgshk0wdg2uy"]
+
+[ext_resource type="Script" path="res://drop_block.gd" id="1_ch8jg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7x2i"]
+
+[node name="DropBlock" type="Node2D"]
+script = ExtResource("1_ch8jg")
+stoppedSpeed = 0.01
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_r7x2i")

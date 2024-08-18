@@ -29,3 +29,5 @@ speed = 0.1
 rotation = -0.221975
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ur7bl")
+
+[node name="Scale" type="Node2D" parent="."]
