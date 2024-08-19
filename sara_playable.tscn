@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_rqwer"]
 [ext_resource type="Script" path="res://pendulum_follow.gd" id="1_uomqb"]
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ur7bl"]
-[ext_resource type="PackedScene" uid="uid://dacmskuis2l13" path="res://placeable_block.tscn" id="2_1l0jq"]
+[ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="2_2pm8b"]
 
 [sub_resource type="Curve2D" id="Curve2D_sspe7"]
 bake_interval = 6.0
@@ -17,7 +17,7 @@ point_count = 5
 [node name="PendulumPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_sspe7")
 script = ExtResource("1_rqwer")
-my_array = Array[PackedScene]([ExtResource("2_1l0jq")])
+my_array = Array[PackedScene]([ExtResource("2_2pm8b")])
 
 [node name="Camera2D" type="Camera2D" parent="PendulumPath"]
 offset = Vector2(0, 324)

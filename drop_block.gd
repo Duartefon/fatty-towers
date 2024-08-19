@@ -3,13 +3,13 @@ extends Node2D
 @export var stoppedSpeed : float
 @export var weight: int
 
-signal block_dropped(x_position)
+signal block_stopped(x_position,weight)
 
 var hasEmitted = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if (!hasEmitted):
-		if (abs($RigidBody2D.linear_velocity - 0) <= stoppedSpeed):
-			block_dropped.emit(self.position.x, weight)
+		if (abs($RigidBody2D.linear_velocity.length() - 0) <= stoppedSpeed):
+			block_stopped.emit(self.position.x, weight)
 			hasEmitted = true

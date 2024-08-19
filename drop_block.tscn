@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://kgshk0wdg2uy"]
+[gd_scene load_steps=4 format=3 uid="uid://kgshk0wdg2uy"]
 
 [ext_resource type="Script" path="res://drop_block.gd" id="1_ch8jg"]
+[ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="2_01msj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7x2i"]
 
@@ -12,3 +13,8 @@ stoppedSpeed = 0.01
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_r7x2i")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(1, 3)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_01msj")
