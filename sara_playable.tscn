@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ur7bl"]
 [ext_resource type="PackedScene" uid="uid://cfaq57x4f82ib" path="res://drop_block_coco.tscn" id="2_yrb4r"]
 [ext_resource type="PackedScene" uid="uid://bwx50gvgqgrq1" path="res://drop_block_maracuja.tscn" id="3_d2mch"]
-[ext_resource type="PackedScene" uid="uid://cmcgsf78wgymr" path="res://scale_plate.tscn" id="5_b51ag"]
+[ext_resource type="PackedScene" uid="uid://bqdakwcys0d6o" path="res://plate_path.tscn" id="6_g44ai"]
 
 [sub_resource type="Curve2D" id="Curve2D_sspe7"]
 bake_interval = 6.0
@@ -37,14 +37,17 @@ rotation = -0.221975
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ur7bl")
 
-[node name="Scale" type="Node2D" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 568)
 zoom = Vector2(4, 4)
 
-[node name="ScalePlateLeft" parent="." instance=ExtResource("5_b51ag")]
-position = Vector2(-322, 576)
+[node name="LeftPlatePath" parent="." instance=ExtResource("6_g44ai")]
+position = Vector2(-288, 488)
+scale = Vector2(0.25, 0.25)
 
-[node name="ScalePlateRight" parent="." instance=ExtResource("5_b51ag")]
-position = Vector2(319, 564)
+[node name="RightPlatePath" parent="." instance=ExtResource("6_g44ai")]
+position = Vector2(288, 488)
+scale = Vector2(0.25, 0.25)
+
+[editable path="LeftPlatePath"]
+[editable path="RightPlatePath"]

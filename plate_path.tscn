@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqdakwcys0d6o"]
+
+[ext_resource type="PackedScene" uid="uid://djbgqfpjbri0u" path="res://scale_plate_v_3.tscn" id="1_5vhsf"]
+
+[sub_resource type="Curve2D" id="Curve2D_65rvf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -648, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 648)
+}
+point_count = 3
+
+[node name="PlatePath" type="Path2D"]
+curve = SubResource("Curve2D_65rvf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(0, 0.000122069)
+progress = 648.0
+rotates = false
+loop = false
+
+[node name="ScalePlateV3" parent="PathFollow2D" instance=ExtResource("1_5vhsf")]
+scale = Vector2(10, 10)
+moveSpeed = 0.5
+floatComparison = 0.01
