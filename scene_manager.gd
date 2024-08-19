@@ -1,6 +1,11 @@
 extends Path2D
 @onready var block_sprite: Sprite2D = $PendulumFollow/BlockSprite
 @export var my_array: Array[PackedScene] = []  
+@onready var scale_plate_left: StaticBody2D = $"../ScalePlate_left"
+@onready var scale_plate_right: StaticBody2D = $"../ScalePlate_right"
+@export var MAX_WEIGHT = 500 
+#os pratos tao hardcoded cuidado ao dar rename na scene tree
+var current_block 
 #array de blocos a partir do inspetor ou assim - done
 var teste
 #ready 
@@ -20,6 +25,7 @@ func select_block():
 	return new_block	
 func spawn():
 	var new_block = select_block()
+	current_block = new_block
 	new_block.global_position = block_sprite.global_position
 	add_child(new_block)
 
@@ -27,8 +33,20 @@ func spawn():
 	new_block.connect("block_stopped", _on_block_stopped)
 	
 
-func _on_block_stopped(pos_x,weight):
+func _on_block_stopped(pos,weight):
 	print("Block has stopped moving!")
+	
+	if position.length_squared() - scale_plate_left.position.length_squared() < position.length_squared() - scale_plate_right.position.length_squared():  
+		current_block.reparent(scale_plate_left)
+		Global.score += weight	 
+		teste = scale_plate_left.global_position * weight / MAX_WEIGHT * 20
+		scale_plate_left.global_position *= weight / MAX_WEIGHT * 20 
+	elif position.length_squared() - scale_plate_left.position.length_squared() > position.length_squared() - scale_plate_right.position.length_squared(): 
+		current_block.reparent(scale_plate_right)
+		Global.score += weight 
+	else: Global.score -= weight
+	
+	
 	#função de spawn (quando se prime espaço) - dne
 	# spawn do block - done
 	# connect to sinal "block_stopped" a este objeto - done

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8dh8s0l0r42h"]
+[gd_scene load_steps=4 format=3 uid="uid://bwx50gvgqgrq1"]
 
 [ext_resource type="Script" path="res://drop_block.gd" id="1_tw01h"]
 [ext_resource type="Texture2D" uid="uid://dqmvj3w8ivoj" path="res://assets/placeholders/maracuja.png" id="2_bwafu"]
@@ -8,6 +8,7 @@
 [node name="DropBlock" type="Node2D"]
 script = ExtResource("1_tw01h")
 stoppedSpeed = 0.01
+weight = 50
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 
@@ -15,6 +16,12 @@ stoppedSpeed = 0.01
 shape = SubResource("RectangleShape2D_r7x2i")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-position = Vector2(2, 2)
-scale = Vector2(0.0511494, 0.080916)
+position = Vector2(9.53674e-07, 3)
+scale = Vector2(0.0836941, 0.116127)
 texture = ExtResource("2_bwafu")
+
+[node name="delayOfSpawn" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="delayOfSpawn" to="." method="_on_delay_of_spawn_timeout"]
