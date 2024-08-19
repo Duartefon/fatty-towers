@@ -1,6 +1,7 @@
 extends Path2D
 @onready var block_sprite: Sprite2D = $PendulumFollow/BlockSprite
 @export var my_array: Array[PackedScene] = []  
+@export var pendulumVerticalSpeed : float
 
 @onready var scale_plate_left = $"../LeftPlatePath/PathFollow2D/ScalePlateV3"
 @onready var scale_plate_right = $"../RightPlatePath/PathFollow2D/ScalePlateV3"
@@ -12,10 +13,14 @@ extends Path2D
 @onready var right_plate_left_limit = $"../RightPlatePath/PathFollow2D/ScalePlateV3/LeftLimit".global_position.x
 @onready var right_plate_right_limit = $"../RightPlatePath/PathFollow2D/ScalePlateV3/RightLimit".global_position.x
 @onready var right_plate_bottom_limit = $"../RightPlatePath/PathFollow2D/ScalePlateV3/BottomLimit".global_position.y
-@onready var starter_height = global_position.y
+@onready var initial_height = global_position.y
 
 var current_block 
 var next_block
+var starting_height
+var target_height
+
+var t = 0.0
 
 @onready var can_drop = true;
 
@@ -23,7 +28,13 @@ func _ready() -> void:
 	select_block()
 	scale_plate_left.connect("stoppedMoving", adjust_camera_left)
 	scale_plate_right.connect("stoppedMoving", adjust_camera_right)
-	
+	target_height = initial_height
+	starting_height = initial_height
+
+func _physics_process(delta):
+	t += delta * pendulumVerticalSpeed
+	global_position = Vector2(0, starting_height).lerp(Vector2(0,target_height), t)
+
 func _input(event: InputEvent) -> void:
 	if (can_drop):
 		if event.is_action_pressed("dropBlock"):
@@ -76,17 +87,20 @@ func _on_block_stopped(pos, weight):
 
 func adjust_camera_left() -> void:
 	var cameraDistance = scale_plate_left.get_highest_block(true)
-	#if (Global.highest_left_block_position > Global.highest_right_block_position):
-	#	global_position.y = starter_height - Global.highest_left_block_position
-	#else:
-	#	global_position.y = starter_height - Global.highest_right_block_position
+	adjust_camera_aux()
 
 func adjust_camera_right() -> void:
 	scale_plate_right.get_highest_block(false)
-	#if (Global.highest_left_block_position > Global.highest_right_block_position):
-	#	global_position.y = starter_height - Global.highest_left_block_position
-	#else:
-	#	global_position.y = starter_height - Global.highest_right_block_position
+	adjust_camera_aux()
+
+func adjust_camera_aux() -> void:
+	starting_height = global_position.y
+	if (Global.highest_left_block_position > Global.highest_right_block_position):
+		if (Global.highest_left_block_position > -INF && Global.highest_left_block_position < $CameraLimit.global_position.y):
+			target_height = clamp(initial_height - Global.highest_left_block_position, initial_height, -INF)
+	else:
+		if (Global.highest_right_block_position > -INF && Global.highest_right_block_position < $CameraLimit.global_position.y):
+			target_height = clamp(initial_height - Global.highest_right_block_position, initial_height, -INF)
 
 func _on_timer_timeout() -> void:
 	can_drop = true
