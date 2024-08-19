@@ -16,12 +16,17 @@ extends Path2D
 var current_block 
 var next_block
 
+@onready var can_drop = true;
+
 func _ready() -> void:
 	select_block()
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("dropBlock"):
-		spawn() 
+	if (can_drop):
+		if event.is_action_pressed("dropBlock"):
+			spawn() 
+			can_drop = false;
+			$Timer.start()
 
 func select_block():
 	var idx = floor(randf_range(0,my_array.size()))
@@ -66,3 +71,7 @@ func _on_block_stopped(pos, weight):
 	left_plate_bottom_limit = $"../LeftPlatePath/PathFollow2D/ScalePlateV3/BottomLimit".global_position.y
 	right_plate_bottom_limit = $"../RightPlatePath/PathFollow2D/ScalePlateV3/BottomLimit".global_position.y
 	
+
+
+func _on_timer_timeout() -> void:
+	can_drop = true
