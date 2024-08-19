@@ -5,6 +5,7 @@ extends Path2D
 @onready var scale_plate_right: StaticBody2D = $"../ScalePlateRight"
 
 @export var MAX_WEIGHT = 500 
+
 var total_weight_left = 0  # estas 3 var nao devem ser preciso 
 var total_weight_right = 0
 #os pratos tao hardcoded cuidado ao dar rename na scene tree
