@@ -46,6 +46,7 @@ autostart = true
 position = Vector2(0, 200)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(0, 568)
 zoom = Vector2(4, 4)
 

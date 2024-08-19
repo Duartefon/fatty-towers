@@ -86,11 +86,13 @@ func _on_block_stopped(pos, weight):
 	right_plate_bottom_limit = $"../RightPlatePath/PathFollow2D/ScalePlateV3/BottomLimit".global_position.y
 
 func adjust_camera_left() -> void:
-	var cameraDistance = scale_plate_left.get_highest_block(true)
+	scale_plate_left.get_highest_block(true)
+	scale_plate_right.get_highest_block(false)
 	adjust_camera_aux()
 
 func adjust_camera_right() -> void:
 	scale_plate_right.get_highest_block(false)
+	scale_plate_left.get_highest_block(true)
 	adjust_camera_aux()
 
 func adjust_camera_aux() -> void:
