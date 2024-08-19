@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://06nh8nhx8w5o"]
+
+[ext_resource type="Script" path="res://floor.gd" id="1_xtymt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_10l47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni76x"]
+
+[node name="Floor" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_xtymt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_10l47")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.2, 1.2)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ni76x")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqph5gbcghrnu"]
+[gd_scene load_steps=9 format=3 uid="uid://cqph5gbcghrnu"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_rqwer"]
 [ext_resource type="Script" path="res://pendulum_follow.gd" id="1_uomqb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cfaq57x4f82ib" path="res://drop_block_coco.tscn" id="2_yrb4r"]
 [ext_resource type="PackedScene" uid="uid://bwx50gvgqgrq1" path="res://drop_block_maracuja.tscn" id="3_d2mch"]
 [ext_resource type="PackedScene" uid="uid://bqdakwcys0d6o" path="res://plate_path.tscn" id="6_g44ai"]
+[ext_resource type="PackedScene" uid="uid://06nh8nhx8w5o" path="res://floor.tscn" id="7_b5tsm"]
 
 [sub_resource type="Curve2D" id="Curve2D_sspe7"]
 bake_interval = 6.0
@@ -15,7 +16,6 @@ _data = {
 point_count = 5
 
 [node name="SaraPlayable" type="Node2D"]
-position = Vector2(0, 1)
 
 [node name="PendulumPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_sspe7")
@@ -42,12 +42,22 @@ position = Vector2(0, 568)
 zoom = Vector2(4, 4)
 
 [node name="LeftPlatePath" parent="." instance=ExtResource("6_g44ai")]
-position = Vector2(-288, 488)
+position = Vector2(-288, 465)
 scale = Vector2(0.25, 0.25)
 
 [node name="RightPlatePath" parent="." instance=ExtResource("6_g44ai")]
-position = Vector2(288, 488)
+position = Vector2(288, 465)
 scale = Vector2(0.25, 0.25)
 
+[node name="Floor" parent="." instance=ExtResource("7_b5tsm")]
+position = Vector2(0, 1640)
+scale = Vector2(100, 100)
+
+[node name="Area2D" parent="Floor" index="1"]
+scale = Vector2(1.01, 1.01)
+
 [editable path="LeftPlatePath"]
+[editable path="LeftPlatePath/PathFollow2D/ScalePlateV3"]
 [editable path="RightPlatePath"]
+[editable path="RightPlatePath/PathFollow2D/ScalePlateV3"]
+[editable path="Floor"]

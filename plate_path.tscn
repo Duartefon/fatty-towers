@@ -12,7 +12,6 @@ point_count = 3
 curve = SubResource("Curve2D_65rvf")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(0, 0.000122069)
 progress = 648.0
 rotates = false
 loop = false

@@ -12,7 +12,7 @@ var canEmit = false
 func _process(delta: float) -> void:
 	if (canEmit and !hasEmitted ):
 		if (abs($RigidBody2D.linear_velocity.length() - 0) <= stoppedSpeed):
-			block_stopped.emit(self.position, weight)
+			block_stopped.emit(self.global_position, weight)
 			hasEmitted = true
 
 
