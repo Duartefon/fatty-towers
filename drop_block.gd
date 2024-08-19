@@ -2,7 +2,7 @@ extends Node2D
 
 @export var stoppedSpeed : float
 @export var weight: int
-
+var plate
 signal block_stopped(x_position,weight)
 
 var hasEmitted = false

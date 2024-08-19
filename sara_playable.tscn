@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqph5gbcghrnu"]
+[gd_scene load_steps=8 format=3 uid="uid://cqph5gbcghrnu"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_rqwer"]
 [ext_resource type="Script" path="res://pendulum_follow.gd" id="1_uomqb"]
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ur7bl"]
-[ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="2_2pm8b"]
+[ext_resource type="PackedScene" uid="uid://cfaq57x4f82ib" path="res://drop_block_coco.tscn" id="2_yrb4r"]
+[ext_resource type="PackedScene" uid="uid://b8dh8s0l0r42h" path="res://drop_block_maracuja.tscn" id="3_d2mch"]
+[ext_resource type="PackedScene" uid="uid://cmcgsf78wgymr" path="res://scale_plate.tscn" id="5_b51ag"]
 
 [sub_resource type="Curve2D" id="Curve2D_sspe7"]
 bake_interval = 6.0
@@ -13,11 +15,12 @@ _data = {
 point_count = 5
 
 [node name="SaraPlayable" type="Node2D"]
+position = Vector2(0, 1)
 
 [node name="PendulumPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_sspe7")
 script = ExtResource("1_rqwer")
-my_array = Array[PackedScene]([ExtResource("2_2pm8b")])
+my_array = Array[PackedScene]([ExtResource("2_yrb4r"), ExtResource("3_d2mch")])
 
 [node name="Camera2D" type="Camera2D" parent="PendulumPath"]
 offset = Vector2(0, 324)
@@ -39,3 +42,9 @@ texture = ExtResource("1_ur7bl")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 568)
 zoom = Vector2(4, 4)
+
+[node name="ScalePlate" parent="." instance=ExtResource("5_b51ag")]
+position = Vector2(-321, 554)
+
+[node name="ScalePlate2" parent="." instance=ExtResource("5_b51ag")]
+position = Vector2(327, 558)
