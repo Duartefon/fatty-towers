@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drdlom13nvuei"]
 
-[ext_resource type="Script" path="res://duarte_test.gd" id="1_mkujl"]
-[ext_resource type="PackedScene" uid="uid://dacmskuis2l13" path="res://placeable_block.tscn" id="2_hqufx"]
+[ext_resource type="Script" path="res://old-and-tests/duarte_test.gd" id="1_mkujl"]
+[ext_resource type="PackedScene" uid="uid://dacmskuis2l13" path="res://hook/placeable_block.tscn" id="2_hqufx"]
 
 [node name="DuarteTest" type="Node2D"]
 script = ExtResource("1_mkujl")
