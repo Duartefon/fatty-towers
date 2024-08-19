@@ -9,6 +9,9 @@ var selectedResolution = 0
 
 var SCALE_MAX_WEIGHT : int = 100;
 
+var highest_left_block_position = -INF;
+var highest_right_block_position = -INF;
+
 var isFullscreen = true
 
 var VOLUME_ARRAY : Array = [1,1,1]
