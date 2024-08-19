@@ -1,8 +1,20 @@
 extends Path2D
+@onready var block_sprite: Sprite2D = $PendulumFollow/BlockSprite
 
+@export var my_array: Array[PackedScene] = []  
 #array de blocos a partir do inspetor ou assim
-
-# no input o espaço, dás spawn de um bloco
+var teste
+func _ready() -> void:
+	teste = my_array[0].instantiate()
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("dropBlock"):
+		var new_block = my_array[0].instantiate()
+		new_block.scale = block_sprite.scale * 0.0001
+		new_block.global_position = block_sprite.global_position
+		
+		add_child(new_block)
+		pass# no input o espaço, dás spawn de um bloco
 
 #ready 
 	#escolher primeiro bloco

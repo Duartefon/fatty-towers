@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://qx5eqi6t2bjr"]
+[gd_scene load_steps=8 format=3 uid="uid://qx5eqi6t2bjr"]
 
 [ext_resource type="Script" path="res://crane_system.gd" id="1_0f3ll"]
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="2_ldevf"]
+[ext_resource type="Script" path="res://hooking.gd" id="2_vt88g"]
+[ext_resource type="PackedScene" uid="uid://eedk841824tm" path="res://block_to_be_hooked.tscn" id="4_1k1dn"]
+[ext_resource type="Script" path="res://block_to_be_hooked.gd" id="5_16v22"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lqlyl"]
 
@@ -16,6 +19,19 @@ shape = SubResource("RectangleShape2D_h05o5")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("..")
+node_b = NodePath("../StaticBody2D")
+motor_enabled = true
+motor_target_velocity = 87266.5
+script = ExtResource("2_vt88g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 1)
 texture = ExtResource("2_ldevf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("4_1k1dn")]
+position = Vector2(-5, 270)
+script = ExtResource("5_16v22")
+
+[connection signal="timeout" from="Timer" to="PinJoint2D" method="_on_timer_timeout"]

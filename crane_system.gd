@@ -1,14 +1,17 @@
 extends StaticBody2D
-var CHANGE_PLATES_SPEEED := 400 
+
+@onready var pin_joint_2d: PinJoint2D = $PinJoint2D
+const CHANGE_PLATES_SPEEED := 400 
 var initial_global_position : Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initial_global_position = global_position
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
-	pass
+	pass	
+
 func _input(event: InputEvent) -> void:	
 	if event.is_action_pressed("leftAction"):
 		var new_position_value := Vector2(global_position.x - CHANGE_PLATES_SPEEED, global_position.y)
