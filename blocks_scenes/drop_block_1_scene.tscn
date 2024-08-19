@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dowlt1s13dhas"]
+
+[ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="1_2eohk"]
+[ext_resource type="Texture2D" uid="uid://dxmkhl2fw2db0" path="res://assets/blocks/block_1.png" id="2_pmo50"]
+
+[node name="DropBlock" instance=ExtResource("1_2eohk")]
+
+[node name="Sprite2D" parent="RigidBody2D" index="1"]
+position = Vector2(-2.38419e-07, 1)
+texture = ExtResource("2_pmo50")
+offset = Vector2(10, -910)

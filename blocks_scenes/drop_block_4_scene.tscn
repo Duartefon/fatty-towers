@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce4tygl57yute"]
+
+[ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="1_htrvo"]
+[ext_resource type="Texture2D" uid="uid://dy1ugsodjuyxu" path="res://assets/blocks/block_4.png" id="2_fe776"]
+
+[node name="DropBlock" instance=ExtResource("1_htrvo")]
+
+[node name="Sprite2D" parent="RigidBody2D" index="1"]
+texture = ExtResource("2_fe776")
