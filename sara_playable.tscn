@@ -43,8 +43,8 @@ texture = ExtResource("1_ur7bl")
 position = Vector2(0, 568)
 zoom = Vector2(4, 4)
 
-[node name="ScalePlate_left" parent="." instance=ExtResource("5_b51ag")]
-position = Vector2(-321, 554)
+[node name="ScalePlateLeft" parent="." instance=ExtResource("5_b51ag")]
+position = Vector2(-322, 576)
 
-[node name="ScalePlate_right" parent="." instance=ExtResource("5_b51ag")]
-position = Vector2(327, 558)
+[node name="ScalePlateRight" parent="." instance=ExtResource("5_b51ag")]
+position = Vector2(319, 564)
