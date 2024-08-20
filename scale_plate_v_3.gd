@@ -35,21 +35,21 @@ func get_highest_block(isLeft: bool) -> void:
 		var collisionsArray = []
 		for i in range(0, count):
 			collisionsArray.push_back(shape_cast.get_collider(i))
-			print("Collider " + str(i) + " has y of " + str(collisionsArray[i].global_position.y))
+		#	print("Collider " + str(i) + " has y of " + str(collisionsArray[i].global_position.y))
 		collisionsArray.sort_custom(func(a,b): return a.global_position.y > b.global_position.y)		
 		var furthestPos = collisionsArray[count - 1].global_position.y
-		print("furthestPos ", furthestPos)
+		#print("furthestPos ", furthestPos)
 		if (isLeft):
-			Global.highest_left_block_position = furthestPos
+			Global.highest_left_block_position = furthestPos * 0.2
 		else:
-			Global.highest_right_block_position = furthestPos
+			Global.highest_right_block_position = furthestPos * 0.2
 		var globalPos = shape_cast.global_position.y
-		print("globalPos ", globalPos)
+		#print("globalPos ", globalPos)
 		var targetPos = shape_cast.target_position.y
-		print("targetPos ", targetPos)
+		#print("targetPos ", targetPos)
 		var difference  = (globalPos - furthestPos) * -1
-		print("difference ", difference)
-		shape_cast.target_position.y = difference
+		#print("difference ", difference)
+		shape_cast.target_position.y = difference * 0.2
 		
 
 		

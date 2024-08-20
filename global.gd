@@ -7,7 +7,7 @@ var score = 0
 var windowMode = 1
 var selectedResolution = 0
 
-var SCALE_MAX_WEIGHT : int = 100;
+var SCALE_MAX_WEIGHT : int = 75;
 
 var highest_left_block_position = -INF;
 var highest_right_block_position = -INF;

@@ -25,15 +25,20 @@ var t = 0.0
 @onready var can_drop = true;
 
 func _ready() -> void:
+	Global.score = 0 
 	select_block()
 	scale_plate_left.connect("stoppedMoving", adjust_camera_left)
 	scale_plate_right.connect("stoppedMoving", adjust_camera_right)
 	target_height = initial_height
 	starting_height = initial_height
 
+func _process(delta: float) -> void:
+	queue_redraw()
+
 func _physics_process(delta):
-	t += delta * pendulumVerticalSpeed
-	global_position = Vector2(0, starting_height).lerp(Vector2(0,target_height), t)
+	$"../Buildings/Corno".rotation_degrees = -40 * ($"../LeftPlatePath/PathFollow2D".progress_ratio - 0.5)
+	#t += delta * pendulumVerticalSpeed
+	#global_position = Vector2(0, starting_height).lerp(Vector2(0,target_height), t)
 
 func _input(event: InputEvent) -> void:
 	if (can_drop):
@@ -42,12 +47,18 @@ func _input(event: InputEvent) -> void:
 			can_drop = false;
 			$Timer.start()
 
+func _draw() -> void:
+	draw_line($"../Buildings/Corno/LeftLineOrigin".global_position, $"../LeftPlatePath/PathFollow2D/ScalePlateV3/LeftLimit".global_position, Color.BLACK, 10, true)
+	draw_line($"../Buildings/Corno/LeftLineOrigin".global_position, $"../LeftPlatePath/PathFollow2D/ScalePlateV3/RightLimit".global_position, Color.BLACK, 10, true)
+	draw_line($"../Buildings/Corno/RightLineOrigin".global_position, $"../RightPlatePath/PathFollow2D/ScalePlateV3/LeftLimit".global_position, Color.BLACK, 10, true)
+	draw_line($"../Buildings/Corno/RightLineOrigin".global_position, $"../RightPlatePath/PathFollow2D/ScalePlateV3/RightLimit".global_position, Color.BLACK, 10, true )
+	
 func select_block():
 	var idx = floor(randf_range(0,my_array.size()))
 	next_block = my_array[idx].instantiate()
 	block_sprite.texture = next_block.get_node("RigidBody2D/Sprite2D").texture
 	block_sprite.scale = next_block.get_node("RigidBody2D/Sprite2D").scale
-	if ($PendulumFollow.progress_ratio <= 0.5):
+	if ($PendulumFollow.progress_ratio > 0.25 && $PendulumFollow.progress_ratio <= 0.75):
 		$PendulumFollow.progress_ratio = 0.5
 	else:
 		$PendulumFollow.progress_ratio = 0
@@ -88,21 +99,24 @@ func _on_block_stopped(pos, weight):
 func adjust_camera_left() -> void:
 	scale_plate_left.get_highest_block(true)
 	scale_plate_right.get_highest_block(false)
-	adjust_camera_aux()
+	#adjust_camera_aux()
 
 func adjust_camera_right() -> void:
 	scale_plate_right.get_highest_block(false)
 	scale_plate_left.get_highest_block(true)
-	adjust_camera_aux()
+	#adjust_camera_aux()
 
 func adjust_camera_aux() -> void:
+	#print("highest_left_block_position ", Global.highest_left_block_position)
+	#print("highest_right_block_position ", Global.highest_right_block_position)
+	#print("$CameraLimit.global_position.y ", $CameraLimit.global_position.y)
 	starting_height = global_position.y
 	if (Global.highest_left_block_position > Global.highest_right_block_position):
 		if (Global.highest_left_block_position > -INF && Global.highest_left_block_position < $CameraLimit.global_position.y):
-			target_height = clamp(initial_height - Global.highest_left_block_position, initial_height, -INF)
+			target_height = clamp(initial_height - Global.highest_left_block_position, -INF, initial_height)
 	else:
 		if (Global.highest_right_block_position > -INF && Global.highest_right_block_position < $CameraLimit.global_position.y):
-			target_height = clamp(initial_height - Global.highest_right_block_position, initial_height, -INF)
+			target_height = clamp(initial_height - Global.highest_right_block_position, -INF, initial_height) 
 
 func _on_timer_timeout() -> void:
 	can_drop = true

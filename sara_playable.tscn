@@ -1,16 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqph5gbcghrnu"]
+[gd_scene load_steps=15 format=3 uid="uid://cqph5gbcghrnu"]
 
 [ext_resource type="Script" path="res://scene_manager.gd" id="1_rqwer"]
 [ext_resource type="Script" path="res://pendulum_follow.gd" id="1_uomqb"]
 [ext_resource type="Texture2D" uid="uid://e1sdrkxwqcjs" path="res://icon.svg" id="1_ur7bl"]
 [ext_resource type="PackedScene" uid="uid://dowlt1s13dhas" path="res://blocks_scenes/drop_block_1_scene.tscn" id="2_n71q5"]
 [ext_resource type="PackedScene" uid="uid://dgsoio0v2bnaq" path="res://blocks_scenes/drop_block_2_scene.tscn" id="3_hlu0j"]
-[ext_resource type="PackedScene" uid="uid://b20qbsx41wtl6" path="res://blocks_scenes/drop_block_3_scene.tscn" id="4_d6jg7"]
 [ext_resource type="PackedScene" uid="uid://ce4tygl57yute" path="res://blocks_scenes/drop_block_4_scene.tscn" id="5_do0or"]
+[ext_resource type="PackedScene" uid="uid://ucvx01dqsgu0" path="res://HUD.tscn" id="5_k0lum"]
 [ext_resource type="Texture2D" uid="uid://cyc4yubcjlrp2" path="res://assets/player/ufo.png" id="6_bsxse"]
 [ext_resource type="PackedScene" uid="uid://bqdakwcys0d6o" path="res://plate_path.tscn" id="6_g44ai"]
 [ext_resource type="PackedScene" uid="uid://06nh8nhx8w5o" path="res://floor.tscn" id="7_b5tsm"]
 [ext_resource type="PackedScene" uid="uid://k0v3via7e56y" path="res://background.tscn" id="9_0umoa"]
+[ext_resource type="Texture2D" uid="uid://duj5646i4t47r" path="res://assets/background/bg_color_citylvl.png" id="12_1lox0"]
+[ext_resource type="AudioStream" uid="uid://ree18rxr8iuf" path="res://assets/sound/Music/Clement Panchout - Sweet 70s.wav" id="13_xh3hr"]
 
 [sub_resource type="Curve2D" id="Curve2D_sspe7"]
 bake_interval = 6.0
@@ -24,26 +26,29 @@ point_count = 5
 [node name="PendulumPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_sspe7")
 script = ExtResource("1_rqwer")
-my_array = Array[PackedScene]([ExtResource("2_n71q5"), ExtResource("3_hlu0j"), ExtResource("4_d6jg7"), ExtResource("5_do0or")])
+my_array = Array[PackedScene]([ExtResource("5_do0or"), ExtResource("5_do0or"), ExtResource("5_do0or"), ExtResource("5_do0or"), ExtResource("3_hlu0j"), ExtResource("3_hlu0j"), ExtResource("3_hlu0j"), ExtResource("2_n71q5"), ExtResource("2_n71q5"), ExtResource("5_do0or")])
+pendulumVerticalSpeed = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="PendulumPath"]
-offset = Vector2(0, 324)
+offset = Vector2(0, 500)
+zoom = Vector2(0.7, 0.7)
 
 [node name="PendulumFollow" type="PathFollow2D" parent="PendulumPath"]
 position = Vector2(-650, -100)
 rotation = 0.221975
 rotates = false
 script = ExtResource("1_uomqb")
-speed = 0.1
+speed = 0.2
 
 [node name="BlockSprite" type="Sprite2D" parent="PendulumPath/PendulumFollow"]
+z_index = 5
 rotation = -0.221975
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ur7bl")
 
 [node name="Ufo" type="Sprite2D" parent="PendulumPath/PendulumFollow"]
-position = Vector2(-104.757, -518.663)
-rotation = -0.221975
+z_index = 4
+position = Vector2(-118.285, -542.263)
+rotation = -0.221657
 texture = ExtResource("6_bsxse")
 
 [node name="Timer" type="Timer" parent="PendulumPath"]
@@ -54,28 +59,59 @@ autostart = true
 [node name="CameraLimit" type="Node2D" parent="PendulumPath"]
 position = Vector2(0, 200)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(0, 568)
-zoom = Vector2(4, 4)
-
 [node name="LeftPlatePath" parent="." instance=ExtResource("6_g44ai")]
-position = Vector2(-288, 465)
+position = Vector2(-405, 747)
 scale = Vector2(0.25, 0.25)
+
+[node name="ScalePlateV3" parent="LeftPlatePath/PathFollow2D" index="0"]
+scale = Vector2(25, 25)
 
 [node name="RightPlatePath" parent="." instance=ExtResource("6_g44ai")]
-position = Vector2(288, 465)
+position = Vector2(405, 747)
 scale = Vector2(0.25, 0.25)
 
+[node name="ScalePlateV3" parent="RightPlatePath/PathFollow2D" index="0"]
+scale = Vector2(25, 25)
+
 [node name="Floor" parent="." instance=ExtResource("7_b5tsm")]
-position = Vector2(0, 1640)
+position = Vector2(0, 1960)
 scale = Vector2(100, 100)
 
 [node name="Area2D" parent="Floor" index="1"]
 scale = Vector2(1.01, 1.01)
 
 [node name="Buildings" parent="." instance=ExtResource("9_0umoa")]
-position = Vector2(8, -737)
+position = Vector2(0, -388)
+scale = Vector2(1.5, 1.5)
+
+[node name="Haste" parent="Buildings" index="0"]
+position = Vector2(0, 590)
+scale = Vector2(0.3, 0.3)
+
+[node name="Corno" parent="Buildings" index="1"]
+position = Vector2(0, 400)
+scale = Vector2(0.5, 0.5)
+
+[node name="LeftLineOrigin" type="Node2D" parent="Buildings/Corno" index="0"]
+position = Vector2(-550, 100)
+
+[node name="RightLineOrigin" type="Node2D" parent="Buildings/Corno" index="1"]
+position = Vector2(550, 100)
+
+[node name="BlueBackground" type="Sprite2D" parent="."]
+z_index = -5
+scale = Vector2(0.99, 10)
+texture = ExtResource("12_1lox0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_k0lum")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_xh3hr")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="PendulumPath/Timer" to="PendulumPath" method="_on_timer_timeout"]
 
@@ -84,3 +120,4 @@ position = Vector2(8, -737)
 [editable path="RightPlatePath"]
 [editable path="RightPlatePath/PathFollow2D/ScalePlateV3"]
 [editable path="Floor"]
+[editable path="Buildings"]

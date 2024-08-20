@@ -1,17 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgsoio0v2bnaq"]
 
 [ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="1_806ut"]
-[ext_resource type="Shape2D" uid="uid://6nn0ow6vmfw3" path="res://Block2Rect.tres" id="2_fk0i0"]
+[ext_resource type="Shape2D" uid="uid://6nn0ow6vmfw3" path="res://blocks_scenes/Block2Rect.tres" id="2_fk0i0"]
 [ext_resource type="Texture2D" uid="uid://ckcxwmjjjoh8k" path="res://assets/blocks/block_2.png" id="2_pvbco"]
 
 [node name="DropBlock" instance=ExtResource("1_806ut")]
-weight = 10
+weight = 20
 
 [node name="CollisionShape2D" parent="RigidBody2D" index="0"]
-position = Vector2(-1, -1)
+position = Vector2(0.5, 1.5)
 shape = ExtResource("2_fk0i0")
 
 [node name="Sprite2D" parent="RigidBody2D" index="1"]
-position = Vector2(1, 1)
+position = Vector2(0, 0)
 texture = ExtResource("2_pvbco")
-offset = Vector2(-10, -640)

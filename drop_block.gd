@@ -16,6 +16,12 @@ func _process(delta: float) -> void:
 			hasEmitted = true
 
 
+
 func _on_delay_of_spawn_timeout() -> void:
 	canEmit = true
 	pass
+
+
+func _on_rigid_body_2d_body_entered(body: Node) -> void:
+	print("Playing thud 1")
+	$SFX.play()

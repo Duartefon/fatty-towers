@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="1_htrvo"]
 [ext_resource type="Texture2D" uid="uid://dy1ugsodjuyxu" path="res://assets/blocks/block_4.png" id="2_fe776"]
-[ext_resource type="Shape2D" uid="uid://p2h3smnfw5se" path="res://Block4Rect.tres" id="2_idby8"]
+[ext_resource type="Shape2D" uid="uid://p2h3smnfw5se" path="res://blocks_scenes/Block4Rect.tres" id="2_idby8"]
 
 [node name="DropBlock" instance=ExtResource("1_htrvo")]
-weight = 5
+weight = 10
 
 [node name="CollisionShape2D" parent="RigidBody2D" index="0"]
-position = Vector2(1.5, 6.5)
+position = Vector2(0.5, 2)
 shape = ExtResource("2_idby8")
 
 [node name="Sprite2D" parent="RigidBody2D" index="1"]

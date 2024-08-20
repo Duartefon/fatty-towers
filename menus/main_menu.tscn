@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://die4if2kryckv"]
+[gd_scene load_steps=10 format=3 uid="uid://die4if2kryckv"]
 
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="1_6eqtu"]
+[ext_resource type="AudioStream" uid="uid://dh3o6v354r1wv" path="res://assets/sound/Music/2016_ Clement Panchout_ Life is full of Joy.wav" id="2_0qko4"]
+[ext_resource type="Texture2D" uid="uid://dac7woweagocl" path="res://assets/background/buildings.png" id="2_i26yi"]
+[ext_resource type="Texture2D" uid="uid://duj5646i4t47r" path="res://assets/background/bg_color_citylvl.png" id="2_isyj5"]
 [ext_resource type="PackedScene" uid="uid://bildwjhyccmy7" path="res://menus/options_menu.tscn" id="2_pt8xw"]
 [ext_resource type="PackedScene" uid="uid://b0rcfjo0loyh7" path="res://menus/tutorial_menu.tscn" id="3_htvr0"]
 [ext_resource type="PackedScene" uid="uid://dkmk8k0t2yre8" path="res://menus/story_menu.tscn" id="4_grqxg"]
@@ -20,13 +23,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6eqtu")
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -1352.5
+offset_right = 384.0
+offset_bottom = 1352.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_isyj5")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -73.0
+offset_right = 5.0
+offset_bottom = 1290.8
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_i26yi")
+expand_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -117,7 +139,9 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="MenuMusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_0qko4")
+volume_db = -20.0
 autoplay = true
 bus = &"Music"
 
