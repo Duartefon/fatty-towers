@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b20qbsx41wtl6"]
+[gd_scene load_steps=4 format=3 uid="uid://b20qbsx41wtl6"]
 
 [ext_resource type="PackedScene" uid="uid://kgshk0wdg2uy" path="res://drop_block.tscn" id="1_3k6nt"]
+[ext_resource type="Shape2D" uid="uid://djrbe5bepcy6q" path="res://Block3Rect.tres" id="2_7yl3p"]
 [ext_resource type="Texture2D" uid="uid://b73s028dltr1t" path="res://assets/blocks/block_3.png" id="2_f53d0"]
 
 [node name="DropBlock" instance=ExtResource("1_3k6nt")]
+weight = 30
 
 [node name="CollisionShape2D" parent="RigidBody2D" index="0"]
-position = Vector2(1, 6)
+position = Vector2(-1, 4.5)
+shape = ExtResource("2_7yl3p")
 
 [node name="Sprite2D" parent="RigidBody2D" index="1"]
 position = Vector2(-2, 2)

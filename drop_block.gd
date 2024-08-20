@@ -18,4 +18,4 @@ func _process(delta: float) -> void:
 
 func _on_delay_of_spawn_timeout() -> void:
 	canEmit = true
-	pass # Replace with function body.
+	pass
